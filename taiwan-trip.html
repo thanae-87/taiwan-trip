@@ -1,0 +1,1702 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🇹🇼 台湾旅行 しおり 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700;900&family=Pacifico&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+  /* ===== Lock Screen ===== */
+  #lockScreen {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: linear-gradient(135deg, #FF3B5C 0%, #FF6B35 50%, #FFD23F 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Zen Maru Gothic', sans-serif;
+  }
+  .lock-card {
+    background: white;
+    border-radius: 28px;
+    padding: 2.5rem 2rem;
+    width: 90%;
+    max-width: 340px;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+  }
+  .lock-icon { font-size: 3rem; margin-bottom: 0.5rem; }
+  .lock-title {
+    font-family: 'Pacifico', cursive;
+    font-size: 1.4rem;
+    color: #FF3B5C;
+    margin-bottom: 0.3rem;
+  }
+  .lock-sub { font-size: 0.8rem; color: #aaa; margin-bottom: 1.5rem; }
+  .lock-input {
+    width: 100%;
+    border: 2.5px solid #e0e0e0;
+    border-radius: 16px;
+    padding: 0.8rem 1rem;
+    font-family: 'Zen Maru Gothic', sans-serif;
+    font-size: 1.1rem;
+    text-align: center;
+    letter-spacing: 0.2em;
+    outline: none;
+    transition: border-color 0.2s;
+    margin-bottom: 1rem;
+  }
+  .lock-input:focus { border-color: #FF3B5C; }
+  .lock-input.error { border-color: #FF3B5C; animation: shake 0.3s ease; }
+  @keyframes shake {
+    0%,100% { transform: translateX(0); }
+    25% { transform: translateX(-8px); }
+    75% { transform: translateX(8px); }
+  }
+  .lock-btn {
+    width: 100%;
+    background: linear-gradient(135deg, #FF3B5C, #FF6B35);
+    color: white;
+    border: none;
+    border-radius: 16px;
+    padding: 0.85rem;
+    font-family: 'Zen Maru Gothic', sans-serif;
+    font-size: 1rem;
+    font-weight: 900;
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.15s;
+  }
+  .lock-btn:hover { opacity: 0.9; transform: translateY(-1px); }
+  .lock-error { font-size: 0.8rem; color: #FF3B5C; margin-top: 0.7rem; min-height: 1.2em; font-weight: 700; }
+  .lock-hint { font-size: 0.72rem; color: #ccc; margin-top: 1rem; }
+
+  :root {
+    --red: #FF3B5C;
+    --yellow: #FFD23F;
+    --teal: #00C9A7;
+    --blue: #4ECDC4;
+    --pink: #FF85A1;
+    --orange: #FF6B35;
+    --purple: #A855F7;
+    --cream: #FFF8F0;
+    --dark: #1a1a2e;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--cream);
+    font-family: 'Zen Maru Gothic', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Decorative background */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: 
+      radial-gradient(circle at 10% 20%, rgba(255, 59, 92, 0.08) 0%, transparent 40%),
+      radial-gradient(circle at 90% 10%, rgba(78, 205, 196, 0.1) 0%, transparent 40%),
+      radial-gradient(circle at 50% 90%, rgba(255, 210, 63, 0.1) 0%, transparent 40%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Floating emojis */
+  .floaties {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+  }
+  .floaty {
+    position: absolute;
+    font-size: 1.8rem;
+    opacity: 0.15;
+    animation: floatAround linear infinite;
+  }
+  @keyframes floatAround {
+    0% { transform: translateY(100vh) rotate(0deg); }
+    100% { transform: translateY(-120px) rotate(360deg); }
+  }
+
+  /* Header */
+  header {
+    position: relative;
+    z-index: 10;
+    background: linear-gradient(135deg, var(--red) 0%, var(--orange) 50%, var(--yellow) 100%);
+    padding: 2rem 1.5rem 3rem;
+    text-align: center;
+    overflow: hidden;
+    clip-path: ellipse(110% 100% at 50% 0%);
+  }
+
+  header::before {
+    content: '🇹🇼';
+    position: absolute;
+    font-size: 8rem;
+    opacity: 0.15;
+    top: -10px;
+    left: -10px;
+    transform: rotate(-15deg);
+  }
+  header::after {
+    content: '✈️';
+    position: absolute;
+    font-size: 5rem;
+    opacity: 0.2;
+    bottom: 20px;
+    right: 20px;
+    transform: rotate(15deg);
+  }
+
+  .header-badge {
+    display: inline-block;
+    background: white;
+    color: var(--red);
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 4px 14px;
+    border-radius: 999px;
+    margin-bottom: 1rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  header h1 {
+    font-family: 'Pacifico', cursive;
+    font-size: 2.5rem;
+    color: white;
+    text-shadow: 3px 3px 0px rgba(0,0,0,0.2);
+    line-height: 1.1;
+    margin-bottom: 0.5rem;
+  }
+
+  header .subtitle {
+    color: rgba(255,255,255,0.9);
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+
+  .trip-info-bar {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+  }
+  .trip-info-pill {
+    background: rgba(255,255,255,0.25);
+    color: white;
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 5px 14px;
+    border-radius: 999px;
+    backdrop-filter: blur(4px);
+  }
+
+  /* Main content */
+  main {
+    position: relative;
+    z-index: 10;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 1.5rem 1rem 4rem;
+  }
+
+  /* Members section */
+  .members-card {
+    background: white;
+    border-radius: 24px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    border: 3px solid var(--yellow);
+    box-shadow: 6px 6px 0px var(--yellow);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .members-card::before {
+    content: '👥';
+    position: absolute;
+    font-size: 4rem;
+    opacity: 0.07;
+    right: -5px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .section-title {
+    font-size: 1.1rem;
+    font-weight: 900;
+    color: var(--dark);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .section-title .emoji-badge {
+    background: var(--yellow);
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+
+  .members-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+  }
+
+  .member-chip {
+    background: var(--cream);
+    border: 2.5px solid #e0e0e0;
+    border-radius: 16px;
+    padding: 0.75rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    position: relative;
+  }
+  .member-chip:hover { transform: scale(1.03); border-color: var(--teal); }
+  .member-chip.active { border-color: var(--teal); background: rgba(0, 201, 167, 0.1); }
+
+  .member-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+  }
+
+  .member-info { flex: 1; min-width: 0; }
+  .member-name {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--dark);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .member-role { font-size: 0.7rem; color: #888; }
+  .member-check { color: var(--teal); font-size: 0.9rem; }
+
+  .you-badge {
+    position: absolute;
+    top: -6px;
+    right: 8px;
+    background: var(--red);
+    color: white;
+    font-size: 0.6rem;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 999px;
+  }
+
+  /* Day tabs */
+  .day-tabs {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    overflow-x: auto;
+    padding-bottom: 4px;
+    scrollbar-width: none;
+  }
+  .day-tabs::-webkit-scrollbar { display: none; }
+
+  .day-tab {
+    flex-shrink: 0;
+    background: white;
+    border: 2.5px solid #e0e0e0;
+    border-radius: 16px;
+    padding: 0.6rem 1.2rem;
+    font-family: 'Zen Maru Gothic', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #888;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .day-tab.active {
+    color: white;
+    border-color: transparent;
+    transform: translateY(-2px);
+  }
+  .day-tab:nth-child(1).active { background: var(--red); box-shadow: 0 4px 12px rgba(255,59,92,0.4); }
+  .day-tab:nth-child(2).active { background: var(--teal); box-shadow: 0 4px 12px rgba(0,201,167,0.4); }
+  .day-tab:nth-child(3).active { background: var(--purple); box-shadow: 0 4px 12px rgba(168,85,247,0.4); }
+
+  /* Schedule */
+  .day-panel { display: none; }
+  .day-panel.active { display: block; animation: fadeIn 0.3s ease; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+  .day-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.2rem;
+    padding: 1rem 1.2rem;
+    border-radius: 18px;
+    color: white;
+    font-weight: 900;
+    font-size: 1rem;
+  }
+  .day-header.day1 { background: linear-gradient(135deg, var(--red), var(--orange)); }
+  .day-header.day2 { background: linear-gradient(135deg, var(--teal), var(--blue)); }
+  .day-header.day3 { background: linear-gradient(135deg, var(--purple), var(--pink)); }
+
+  .day-header .day-num {
+    background: rgba(255,255,255,0.3);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Pacifico', cursive;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+  }
+
+  /* Timeline */
+  .timeline {
+    position: relative;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 42px;
+    top: 12px;
+    bottom: 12px;
+    width: 3px;
+    background: repeating-linear-gradient(
+      to bottom,
+      var(--yellow) 0px, var(--yellow) 8px,
+      transparent 8px, transparent 14px
+    );
+    border-radius: 2px;
+  }
+
+  .schedule-item {
+    position: relative;
+    margin-bottom: 0.9rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 0;
+  }
+
+  /* 左カラム：時間＋ドット */
+  .time-col {
+    width: 56px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 14px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .time-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: white;
+    border: 3px solid var(--red);
+    flex-shrink: 0;
+    margin-bottom: 4px;
+  }
+
+  .time-label {
+    font-size: 0.68rem;
+    font-weight: 900;
+    color: var(--red);
+    line-height: 1.2;
+    text-align: center;
+    word-break: break-all;
+  }
+  .time-label .time-end {
+    font-size: 0.6rem;
+    color: #aaa;
+    font-weight: 500;
+    display: block;
+  }
+
+  /* 右カラム：カード */
+  .card-col {
+    flex: 1;
+    min-width: 0;
+    padding-left: 10px;
+  }
+
+  .schedule-card {
+    background: white;
+    border-radius: 18px;
+    padding: 1rem 1.1rem;
+    border: 2.5px solid #f0f0f0;
+    cursor: pointer;
+    transition: all 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+  .schedule-card:hover { transform: translateX(4px); border-color: var(--yellow); box-shadow: 3px 3px 0 var(--yellow); }
+
+  .schedule-card::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 5px;
+    border-radius: 3px 0 0 3px;
+  }
+  .cat-transport .schedule-card::before { background: var(--blue); }
+  .cat-food .schedule-card::before { background: var(--orange); }
+  .cat-sightseeing .schedule-card::before { background: var(--teal); }
+  .cat-night .schedule-card::before { background: var(--purple); }
+  .cat-hotel .schedule-card::before { background: var(--pink); }
+  .cat-custom .schedule-card::before { background: var(--yellow); }
+
+  .schedule-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0.5rem;
+  }
+  .schedule-title {
+    font-size: 0.95rem;
+    font-weight: 900;
+    color: var(--dark);
+    flex: 1;
+  }
+  .cat-badge {
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 999px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .cat-transport .cat-badge { background: #e3f2ff; color: var(--blue); }
+  .cat-food .cat-badge { background: #fff3e0; color: var(--orange); }
+  .cat-sightseeing .cat-badge { background: #e0faf6; color: var(--teal); }
+  .cat-night .cat-badge { background: #f3e0ff; color: var(--purple); }
+  .cat-hotel .cat-badge { background: #ffe0ec; color: var(--pink); }
+  .cat-custom .cat-badge { background: #fffde0; color: #b8960a; }
+
+  .schedule-notes {
+    margin-top: 0.5rem;
+    font-size: 0.8rem;
+    color: #666;
+    line-height: 1.5;
+  }
+
+  /* Comments */
+  .comments-section {
+    margin-top: 0.8rem;
+    border-top: 2px dashed #f0f0f0;
+    padding-top: 0.7rem;
+  }
+  .comment {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+    animation: slideIn 0.2s ease;
+  }
+  @keyframes slideIn { from { opacity: 0; transform: translateX(-5px); } to { opacity: 1; transform: none; } }
+
+  .comment-avatar {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    flex-shrink: 0;
+  }
+  .comment-body {
+    background: var(--cream);
+    border-radius: 12px;
+    padding: 5px 10px;
+    font-size: 0.78rem;
+    color: var(--dark);
+    line-height: 1.4;
+  }
+  .comment-author { font-weight: 700; font-size: 0.7rem; margin-bottom: 1px; }
+
+  .comment-input-row {
+    display: flex;
+    gap: 0.4rem;
+    margin-top: 0.5rem;
+  }
+  .comment-input {
+    flex: 1;
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 6px 10px;
+    font-family: 'Zen Maru Gothic', sans-serif;
+    font-size: 0.78rem;
+    outline: none;
+    background: var(--cream);
+    transition: border-color 0.2s;
+  }
+  .comment-input:focus { border-color: var(--teal); }
+
+  .send-btn {
+    background: var(--teal);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    width: 34px;
+    height: 34px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .send-btn:hover { background: var(--red); transform: scale(1.1); }
+
+  /* Memo section */
+  .memo-card {
+    background: white;
+    border-radius: 24px;
+    padding: 1.5rem;
+    margin-top: 1.5rem;
+    border: 3px solid var(--pink);
+    box-shadow: 6px 6px 0px var(--pink);
+  }
+  .shared-memo {
+    width: 100%;
+    min-height: 120px;
+    border: 2px solid #e0e0e0;
+    border-radius: 16px;
+    padding: 0.8rem;
+    font-family: 'Zen Maru Gothic', sans-serif;
+    font-size: 0.85rem;
+    resize: vertical;
+    outline: none;
+    background: var(--cream);
+    transition: border-color 0.2s;
+    line-height: 1.6;
+  }
+  .shared-memo:focus { border-color: var(--pink); }
+
+  /* Hotel info card */
+  .hotel-card {
+    background: white;
+    border-radius: 24px;
+    padding: 1.5rem;
+    margin-top: 1.5rem;
+    border: 3px solid var(--teal);
+    box-shadow: 6px 6px 0px var(--teal);
+    position: relative;
+    overflow: hidden;
+  }
+  .hotel-card::after {
+    content: '🏨';
+    position: absolute;
+    font-size: 4rem;
+    opacity: 0.08;
+    right: -5px;
+    bottom: -5px;
+  }
+  .info-row {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 0.6rem;
+    align-items: flex-start;
+    font-size: 0.85rem;
+  }
+  .info-label {
+    font-weight: 700;
+    color: var(--teal);
+    min-width: 90px;
+    flex-shrink: 0;
+  }
+  .info-value { color: var(--dark); line-height: 1.5; }
+
+  /* Flight info */
+  .flight-card {
+    background: white;
+    border-radius: 24px;
+    padding: 1.5rem;
+    margin-top: 1.5rem;
+    border: 3px solid var(--blue);
+    box-shadow: 6px 6px 0px var(--blue);
+    position: relative;
+    overflow: hidden;
+  }
+  .flight-card::after {
+    content: '✈️';
+    position: absolute;
+    font-size: 4rem;
+    opacity: 0.08;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .flight-route {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: var(--cream);
+    border-radius: 16px;
+    padding: 1rem;
+    margin-bottom: 0.8rem;
+  }
+  .airport { text-align: center; flex: 1; }
+  .airport-code { font-size: 1.5rem; font-weight: 900; color: var(--dark); }
+  .airport-name { font-size: 0.7rem; color: #888; }
+  .flight-arrow { text-align: center; flex: 1; }
+  .flight-num { font-size: 0.75rem; font-weight: 700; color: var(--blue); }
+  .arrow-line {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    justify-content: center;
+    margin: 2px 0;
+  }
+  .arrow-line::before, .arrow-line::after {
+    content: '';
+    height: 2px;
+    width: 20px;
+    background: var(--blue);
+  }
+  .arrow-plane { color: var(--blue); font-size: 0.9rem; }
+  .flight-time { font-size: 0.75rem; color: #888; }
+
+  /* Checklist */
+  .checklist-card {
+    background: white;
+    border-radius: 24px;
+    padding: 1.5rem;
+    margin-top: 1.5rem;
+    border: 3px solid var(--orange);
+    box-shadow: 6px 6px 0px var(--orange);
+  }
+  .checklist-item {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    padding: 0.5rem 0;
+    border-bottom: 1.5px dashed #f0f0f0;
+    cursor: pointer;
+    transition: opacity 0.2s;
+  }
+  .checklist-item:last-child { border-bottom: none; }
+  .checklist-item.done { opacity: 0.5; }
+  .check-circle {
+    width: 24px; height: 24px;
+    border-radius: 50%;
+    border: 2.5px solid #ddd;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    font-size: 0.75rem;
+    transition: all 0.2s;
+  }
+  .checklist-item.done .check-circle {
+    background: var(--teal);
+    border-color: var(--teal);
+    color: white;
+  }
+  .check-text { font-size: 0.85rem; font-weight: 700; }
+  .check-who { font-size: 0.7rem; color: #aaa; margin-left: auto; }
+
+  /* Add item */
+  .add-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: none;
+    border: 2.5px dashed #ddd;
+    border-radius: 16px;
+    padding: 0.6rem 1rem;
+    width: 100%;
+    cursor: pointer;
+    font-family: 'Zen Maru Gothic', sans-serif;
+    font-size: 0.82rem;
+    color: #bbb;
+    font-weight: 700;
+    transition: all 0.2s;
+    margin-top: 0.75rem;
+  }
+  .add-btn:hover { border-color: var(--teal); color: var(--teal); }
+
+  /* Current user selector */
+  .user-bar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(255,248,240,0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 2px solid #f0e0d0;
+    padding: 0.6rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+  }
+  .user-bar span { color: #888; }
+  .user-select-chip {
+    display: flex;
+    gap: 0.4rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .user-select-chip::-webkit-scrollbar { display: none; }
+  .user-chip {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 10px;
+    border-radius: 999px;
+    border: 2px solid #ddd;
+    cursor: pointer;
+    font-size: 0.75rem;
+    font-weight: 700;
+    white-space: nowrap;
+    transition: all 0.2s;
+    background: white;
+  }
+  .user-chip.selected { border-color: transparent; color: white; }
+
+  /* Responsive */
+  @media (max-width: 480px) {
+    header { padding: 1.5rem 1rem 2.5rem; }
+    header h1 { font-size: 1.8rem; }
+    header .subtitle { font-size: 0.8rem; }
+    .trip-info-bar { gap: 0.5rem; }
+    .trip-info-pill { font-size: 0.7rem; padding: 4px 10px; }
+
+    main { padding: 1rem 0.75rem 4rem; }
+
+    .members-grid { grid-template-columns: repeat(3, 1fr); gap: 0.5rem; }
+    .member-chip { padding: 0.6rem 0.5rem; }
+    .member-avatar { width: 28px; height: 28px; font-size: 1rem; }
+    .member-name { font-size: 0.75rem; }
+
+    .user-bar { padding: 0.5rem 0.75rem; font-size: 0.72rem; }
+    .user-chip { font-size: 0.7rem; padding: 3px 8px; }
+
+    .day-tabs { gap: 0.4rem; }
+    .day-tab { font-size: 0.78rem; padding: 0.5rem 0.9rem; }
+
+    .day-header { padding: 0.8rem 1rem; font-size: 0.88rem; }
+    .day-header .day-num { width: 34px; height: 34px; font-size: 0.95rem; }
+
+    /* Timeline on mobile */
+    .timeline::before { left: 34px; }
+    .time-col { width: 48px; }
+    .time-label { font-size: 0.62rem; }
+    .time-label .time-end { font-size: 0.56rem; }
+    .time-dot { width: 12px; height: 12px; }
+    .card-col { padding-left: 8px; }
+
+    .schedule-card { padding: 0.75rem 0.9rem; border-radius: 14px; }
+    .schedule-title { font-size: 0.85rem; }
+    .cat-badge { font-size: 0.6rem; padding: 2px 6px; }
+    .card-action-btn { font-size: 0.8rem; opacity: 0.7; }
+    .schedule-notes { font-size: 0.75rem; }
+
+    .reaction-pill { font-size: 0.7rem; padding: 2px 6px; }
+
+    .comment-input { font-size: 0.75rem; }
+    .comment-body { font-size: 0.75rem; }
+
+    .flight-route { padding: 0.75rem; gap: 0.5rem; }
+    .airport-code { font-size: 1.2rem; }
+
+    .section-title { font-size: 0.95rem; }
+    .info-row { font-size: 0.8rem; }
+    .info-label { min-width: 75px; }
+
+    .members-card, .hotel-card, .flight-card, .checklist-card, .memo-card { padding: 1.1rem; border-radius: 18px; }
+
+    .add-schedule-btn { font-size: 0.78rem; padding: 0.65rem; }
+    .add-btn { font-size: 0.78rem; }
+    .shared-memo { font-size: 0.82rem; }
+  }
+
+  .card-action-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 0.85rem;
+    padding: 2px 4px;
+    border-radius: 6px;
+    opacity: 0.4;
+    transition: opacity 0.15s, background 0.15s;
+    line-height: 1;
+  }
+  .schedule-card:hover .card-action-btn { opacity: 0.8; }
+  .card-action-btn:hover { opacity: 1 !important; background: #f5f5f5; }
+
+  /* Expand toggle */
+  .expand-toggle {
+    font-size: 0.72rem;
+    color: var(--teal);
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 0.3rem;
+    display: inline-block;
+  }
+  .collapsed .comments-section { display: none; }
+  .collapsed .comment-input-row { display: none; }
+
+  /* Add custom schedule */
+  .add-schedule-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background: none;
+    border: 2.5px dashed #ddd;
+    border-radius: 18px;
+    padding: 0.8rem;
+    width: 100%;
+    cursor: pointer;
+    font-family: 'Zen Maru Gothic', sans-serif;
+    font-size: 0.82rem;
+    color: #bbb;
+    font-weight: 700;
+    transition: all 0.2s;
+    margin-top: 0.5rem;
+  }
+  .add-schedule-btn:hover { border-color: var(--red); color: var(--red); }
+
+  /* Reaction row */
+  .reaction-row {
+    display: flex;
+    gap: 0.3rem;
+    margin-top: 0.5rem;
+    flex-wrap: wrap;
+  }
+  .reaction-pill {
+    background: var(--cream);
+    border: 1.5px solid #e0e0e0;
+    border-radius: 999px;
+    padding: 2px 8px;
+    font-size: 0.75rem;
+    cursor: pointer;
+    transition: all 0.15s;
+    user-select: none;
+  }
+  .reaction-pill:hover { background: #fff0f3; border-color: var(--red); transform: scale(1.1); }
+  .reaction-pill.active { background: #fff0f3; border-color: var(--red); }
+  .add-reaction { background: none; border: 1.5px dashed #ddd; color: #bbb; }
+  .add-reaction:hover { border-color: var(--yellow); color: var(--yellow); background: none; }
+</style>
+</head>
+<body>
+
+<!-- ===== Lock Screen ===== -->
+<div id="lockScreen">
+  <div class="lock-card">
+    <div class="lock-icon">🔐</div>
+    <div class="lock-title">台湾旅行 しおり</div>
+    <div class="lock-sub">パスワードを入力してください</div>
+    <input class="lock-input" id="lockInput" type="password" placeholder="••••••" maxlength="20"
+      onkeydown="if(event.key==='Enter') checkPassword()">
+    <button class="lock-btn" onclick="checkPassword()">開く 🇹🇼</button>
+    <div class="lock-error" id="lockError"></div>
+    <div class="lock-hint">※ パスワードはゆうこから聞いてね</div>
+  </div>
+</div>
+
+<!-- ===== Main Content (hidden until unlocked) ===== -->
+<div id="mainContent" style="display:none;">
+<div class="floaties" id="floaties"></div>
+
+<!-- User bar -->
+<div class="user-bar">
+  <span>👤 今は</span>
+  <div class="user-select-chip" id="userSelect"></div>
+  <span>として操作中</span>
+</div>
+
+<!-- Header -->
+<header>
+  <div class="header-badge">✈ Travel Itinerary 2026</div>
+  <h1>台湾旅行🇹🇼</h1>
+  <p class="subtitle">台北・3日間の旅 🌸</p>
+  <div class="trip-info-bar">
+    <span class="trip-info-pill">📅 5/29(金) 〜 5/31(日)</span>
+    <span class="trip-info-pill">🏨 HU HOUSE TAIPEI</span>
+    <span class="trip-info-pill">✈ Jetstar GK013/014</span>
+  </div>
+</header>
+
+<main>
+
+  <!-- Members -->
+  <div class="members-card">
+    <div class="section-title">
+      <div class="emoji-badge">🌸</div>
+      メンバー
+    </div>
+    <div class="members-grid" id="membersGrid"></div>
+  </div>
+
+  <!-- Flight Info -->
+  <div class="flight-card">
+    <div class="section-title">
+      <div class="emoji-badge" style="background:var(--blue);color:white;">✈</div>
+      フライト情報
+    </div>
+    <div class="flight-route">
+      <div class="airport">
+        <div class="airport-code">NRT</div>
+        <div class="airport-name">成田</div>
+        <div style="font-size:0.9rem;font-weight:900;margin-top:4px;">09:15</div>
+        <div style="font-size:0.7rem;color:#aaa;">5/29(金)</div>
+      </div>
+      <div class="flight-arrow">
+        <div class="flight-num">GK013</div>
+        <div class="arrow-line"><span class="arrow-plane">✈</span></div>
+        <div class="flight-time">約3時間</div>
+      </div>
+      <div class="airport">
+        <div class="airport-code">TPE</div>
+        <div class="airport-name">台湾桃園</div>
+        <div style="font-size:0.9rem;font-weight:900;margin-top:4px;">12:10</div>
+        <div style="font-size:0.7rem;color:#aaa;">5/29(金)</div>
+      </div>
+    </div>
+    <div class="flight-route">
+      <div class="airport">
+        <div class="airport-code">TPE</div>
+        <div class="airport-name">台湾桃園</div>
+        <div style="font-size:0.9rem;font-weight:900;margin-top:4px;">13:10</div>
+        <div style="font-size:0.7rem;color:#aaa;">5/31(日)</div>
+      </div>
+      <div class="flight-arrow">
+        <div class="flight-num">GK014</div>
+        <div class="arrow-line"><span class="arrow-plane">✈</span></div>
+        <div class="flight-time">約3時間</div>
+      </div>
+      <div class="airport">
+        <div class="airport-code">NRT</div>
+        <div class="airport-name">成田</div>
+        <div style="font-size:0.9rem;font-weight:900;margin-top:4px;">17:35</div>
+        <div style="font-size:0.7rem;color:#aaa;">5/31(日)</div>
+      </div>
+    </div>
+    <div class="info-row" style="margin-top:0.5rem;">
+      <span class="info-label">受付集合</span>
+      <span class="info-value">成田空港 第3旅客ターミナル 2F<br>Jetstar チェックインカウンター 07:15まで</span>
+    </div>
+    <div class="info-row">
+      <span class="info-label">ツアーNo.</span>
+      <span class="info-value">TWN711 / 予約番号 01626002572</span>
+    </div>
+  </div>
+
+  <!-- Hotel Info -->
+  <div class="hotel-card">
+    <div class="section-title">
+      <div class="emoji-badge" style="background:var(--teal);color:white;">🏨</div>
+      ホテル情報
+    </div>
+    <div class="info-row">
+      <span class="info-label">ホテル名</span>
+      <span class="info-value">HU HOUSE TAIPEI<br>（フーハウスホテル台北）</span>
+    </div>
+    <div class="info-row">
+      <span class="info-label">住所</span>
+      <span class="info-value">重慶北路二段172号 台北市大同区<br>
+        <a href="https://maps.app.goo.gl/bAr1xHiYgBskxzTD6?g_st=ic" target="_blank" style="display:inline-flex;align-items:center;gap:4px;margin-top:5px;color:var(--teal);font-weight:700;font-size:0.78rem;text-decoration:none;">🗺️ Google マップで見る</a>
+      </span>
+    </div>
+    <div class="info-row">
+      <span class="info-label">TEL</span>
+      <span class="info-value">(02) 2553-3919</span>
+    </div>
+    <div class="info-row">
+      <span class="info-label">チェックイン</span>
+      <span class="info-value">15:00以降〜</span>
+    </div>
+    <div class="info-row">
+      <span class="info-label">現地HIS</span>
+      <span class="info-value">H.I.S. TAIWAN CO.,LTD<br>TEL: (02) 2568-2288（9:30〜18:00）</span>
+    </div>
+  </div>
+
+  <!-- Day Tabs + Schedule -->
+  <div style="margin-top:1.5rem;">
+    <div class="day-tabs">
+      <button class="day-tab active" onclick="switchDay(1, this)">🗓 1日目 5/29</button>
+      <button class="day-tab" onclick="switchDay(2, this)">🗓 2日目 5/30</button>
+      <button class="day-tab" onclick="switchDay(3, this)">🗓 3日目 5/31</button>
+    </div>
+
+    <!-- Day 1 -->
+    <div class="day-panel active" id="day-1">
+      <div class="day-header day1">
+        <div class="day-num">1</div>
+        <div>
+          <div>1日目 — 2026年5月29日（金）</div>
+          <div style="font-size:0.75rem;opacity:0.8;font-weight:500;">出発 → 台北到着 → 龍山寺 → 士林夜市</div>
+        </div>
+      </div>
+      <div class="timeline" id="timeline-1"></div>
+      <button id="addSchedBtn-1" class="add-schedule-btn" onclick="addSchedule(1)">＋ 予定を追加する</button>
+    </div>
+
+    <!-- Day 2 -->
+    <div class="day-panel" id="day-2">
+      <div class="day-header day2">
+        <div class="day-num">2</div>
+        <div>
+          <div>2日目 — 2026年5月30日（土）</div>
+          <div style="font-size:0.75rem;opacity:0.8;font-weight:500;">終日自由行動 🎉</div>
+        </div>
+      </div>
+      <div class="timeline" id="timeline-2"></div>
+      <button id="addSchedBtn-2" class="add-schedule-btn" onclick="addSchedule(2)">＋ 予定を追加する</button>
+    </div>
+
+    <!-- Day 3 -->
+    <div class="day-panel" id="day-3">
+      <div class="day-header day3">
+        <div class="day-num">3</div>
+        <div>
+          <div>3日目 — 2026年5月31日（日）</div>
+          <div style="font-size:0.75rem;opacity:0.8;font-weight:500;">自由時間 → 空港 → 帰国</div>
+        </div>
+      </div>
+      <div class="timeline" id="timeline-3"></div>
+      <button id="addSchedBtn-3" class="add-schedule-btn" onclick="addSchedule(3)">＋ 予定を追加する</button>
+    </div>
+  </div>
+
+  <!-- Checklist -->
+  <div class="checklist-card">
+    <div class="section-title">
+      <div class="emoji-badge" style="background:var(--orange);color:white;">✓</div>
+      <span id="checklistTitle">持ち物チェックリスト</span>
+    </div>
+    <div id="checklistItems"></div>
+    <button class="add-btn" onclick="addCheckItem()">＋ アイテムを追加</button>
+  </div>
+
+  <!-- Shared Memo -->
+  <div class="memo-card">
+    <div class="section-title">
+      <div class="emoji-badge" style="background:var(--pink);color:white;">📝</div>
+      みんなのメモ
+    </div>
+    <textarea class="shared-memo" id="sharedMemo" placeholder="みんなで共有したいことをここに書こう！
+例：行きたいお店のメモ、割り勘計算、気になること..."></textarea>
+  </div>
+
+  <!-- Map Link -->
+  <a href="https://maps.app.goo.gl/GDKaF1fvs7WjZcGG6?g_st=i" target="_blank" style="display:block;text-decoration:none;margin-top:1.5rem;">
+    <div style="background:white;border-radius:24px;padding:1.2rem 1.5rem;border:3px solid var(--teal);box-shadow:6px 6px 0px var(--teal);display:flex;align-items:center;gap:1rem;transition:transform 0.15s;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='none'">
+      <div style="width:48px;height:48px;background:linear-gradient(135deg,var(--teal),var(--blue));border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:1.6rem;flex-shrink:0;">🗺️</div>
+      <div>
+        <div style="font-family:'Zen Maru Gothic',sans-serif;font-size:0.95rem;font-weight:900;color:var(--dark);">Google マップで見る</div>
+        <div style="font-size:0.75rem;color:#888;margin-top:2px;">maps.app.goo.gl/GDKaF1fvs7WjZcGG6</div>
+      </div>
+      <div style="margin-left:auto;font-size:1.1rem;color:var(--teal);">→</div>
+    </div>
+  </a>
+
+</main>
+
+</div><!-- /#mainContent -->
+
+<script>
+// ====== Password ======
+const CORRECT_PASSWORD = 'taiwan2026';
+
+function checkPassword() {
+  const input = document.getElementById('lockInput');
+  const errorEl = document.getElementById('lockError');
+  if (input.value === CORRECT_PASSWORD) {
+    sessionStorage.setItem('tw_auth', '1');
+    document.getElementById('lockScreen').style.display = 'none';
+    document.getElementById('mainContent').style.display = 'block';
+    init();
+  } else {
+    errorEl.textContent = 'パスワードが違います 🙅';
+    input.classList.add('error');
+    input.value = '';
+    setTimeout(() => { input.classList.remove('error'); errorEl.textContent = ''; }, 1500);
+    input.focus();
+  }
+}
+
+// すでに認証済みならスキップ
+if (sessionStorage.getItem('tw_auth') === '1') {
+  document.getElementById('lockScreen').style.display = 'none';
+  document.getElementById('mainContent').style.display = 'block';
+  document.addEventListener('DOMContentLoaded', init);
+}
+
+// ====== Data ======
+const MEMBERS = [
+  { id: 'yuko', name: 'ゆうこ', emoji: '👑', color: '#FF3B5C' },
+  { id: 'hanae', name: 'はなえ', emoji: '🌸', color: '#00C9A7' },
+  { id: 'yuri', name: 'ゆり', emoji: '🦋', color: '#A855F7' },
+];
+
+const SCHEDULES = {
+  1: [
+    { time: '07:00', timeEnd: '', title: '成田集合', icon: '🛫', cat: 'transport', catLabel: '集合', notes: '成田空港 第3旅客ターミナル 2F\nJetstar チェックインカウンター（Eチケット不要）\nパスポートを持参してください', reactions: {}, comments: [] },
+    { time: '09:15', timeEnd: '12:00', title: '飛行機 GK013', icon: '✈️', cat: 'transport', catLabel: '移動', notes: 'ジェットスター・ジャパン GK013\n成田(09:15) → 台湾桃園(12:10)', reactions: {}, comments: [] },
+    { time: '12:15', timeEnd: '13:15', title: '入国審査', icon: '🛂', cat: 'transport', catLabel: '手続き', notes: '入国カード記入が必要です。ペン持参推奨✏️', reactions: {}, comments: [] },
+    { time: '13:15', timeEnd: '14:15', title: '台北へ移動', icon: '🚌', cat: 'transport', catLabel: '移動', notes: '現地係員が空港でお待ちしています\n送迎の途中、両替店に立ち寄ります', reactions: {}, comments: [] },
+    { time: '14:15', timeEnd: '15:15', title: 'ホテル近くで遅めランチ', icon: '🍜', cat: 'food', catLabel: 'グルメ', notes: 'ホテルチェックインは15:00〜なのでランチしながら時間調整✨', reactions: {}, comments: [] },
+    { time: '15:15', timeEnd: '16:30', title: '龍山寺', icon: '🛕', cat: 'sightseeing', catLabel: '観光', notes: '台北最古の寺院。お参りして台湾の文化を感じよう🙏', reactions: {}, comments: [] },
+    { time: '16:30', timeEnd: '18:00', title: '占い', icon: '🔮', cat: 'sightseeing', catLabel: '体験', notes: '龍山寺周辺の占い横丁へ。恋愛運・仕事運を占おう💫', reactions: {}, comments: [] },
+    { time: '18:00', timeEnd: '18:30', title: '士林夜市方面に移動', icon: '🚇', cat: 'transport', catLabel: '移動', notes: 'MRTで剣潭駅へ。徒歩で士林夜市へ向かいます', reactions: {}, comments: [] },
+    { time: '20:30', timeEnd: '22:00', title: '夜市で買い食い', icon: '🥟', cat: 'night', catLabel: '夜市', notes: '士林夜市でグルメを満喫🎉\n胡椒餅・大鶏排・臭豆腐など挑戦してみよう！', reactions: {}, comments: [] },
+  ],
+  2: [
+    { time: '09:00', timeEnd: '', title: 'ホテルで朝食', icon: '🌅', cat: 'food', catLabel: 'グルメ', notes: 'ホテルの朝食付き🌿', reactions: {}, comments: [] },
+    { time: '10:00', timeEnd: '', title: '終日自由行動', icon: '🗺️', cat: 'custom', catLabel: '自由', notes: '思い思いに台北を楽しもう！\nおすすめ：九份、故宮博物院、西門、迪化街など', reactions: {}, comments: [] },
+  ],
+  3: [
+    { time: '朝', timeEnd: '', title: 'ホテルで朝食・チェックアウト準備', icon: '🌄', cat: 'hotel', catLabel: 'ホテル', notes: 'チェックアウト時間を確認しておこう', reactions: {}, comments: [] },
+    { time: '〜09:30', timeEnd: '', title: '自由時間・お土産タイム', icon: '🛍️', cat: 'custom', catLabel: '自由', notes: '最後のお土産タイム！パイナップルケーキ・ヌガーなど忘れずに🍍\nホテル周辺で軽くショッピング', reactions: {}, comments: [] },
+    { time: '09:30', timeEnd: '10:30', title: 'ホテル出発・空港へ移動', icon: '🚌', cat: 'transport', catLabel: '移動', notes: 'MRTまたはタクシーで桃園空港へ。\n桃園空港まで約40〜60分かかるので余裕をもって出発！', reactions: {}, comments: [] },
+    { time: '11:10', timeEnd: '12:30', title: '空港到着・チェックイン・出国審査', icon: '🛂', cat: 'transport', catLabel: '手続き', notes: '✈ フライト(13:10)の2時間前に到着\nジェットスター GK014 チェックインカウンターへ\n出国審査・手荷物検査を済ませよう\n免税店でのショッピングもこの時間に！', reactions: {}, comments: [] },
+    { time: '13:10', timeEnd: '17:35', title: '帰国フライト GK014', icon: '🏠', cat: 'transport', catLabel: '帰国', notes: 'ジェットスター GK014\n台湾桃園(13:10) → 成田(17:35)\n楽しかった旅の余韻に浸ろう〜✨', reactions: {}, comments: [] },
+  ],
+};
+
+// ====== Per-member checklist ======
+const BASE_CHECKLIST = [
+  { id: 1,  text: 'パスポート', done: false },
+  { id: 2,  text: '財布（クレカ・少額現金）', done: false },
+  { id: 3,  text: 'スマホ', done: false },
+  { id: 4,  text: '充電器・ケーブル', done: false },
+  { id: 5,  text: 'モバイルバッテリー', done: false },
+  { id: 6,  text: 'eSIM設定情報', done: false },
+  { id: 7,  text: '着替え', done: false },
+  { id: 8,  text: '下着', done: false },
+  { id: 9,  text: '羽織', done: false },
+  { id: 10, text: '歩きやすい靴', done: false },
+  { id: 11, text: 'スキンケア・最低限のメイク', done: false },
+  { id: 12, text: '歯ブラシ', done: false },
+  { id: 13, text: '常備薬', done: false },
+  { id: 14, text: '折りたたみ傘', done: false },
+  { id: 15, text: 'パジャマ', done: false },
+  { id: 16, text: 'シャンプー', done: false },
+];
+
+// 各メンバー用の独立したリストを生成
+const memberChecklists = {};
+MEMBERS.forEach(m => {
+  memberChecklists[m.id] = JSON.parse(JSON.stringify(BASE_CHECKLIST));
+});
+
+// ====== State ======
+let currentUser = 'yuko';
+let scheduleData = JSON.parse(JSON.stringify(SCHEDULES));
+let sharedMemo = '🌸 みんなでメモを書き込んでね！\n\n💱 両替レート目安: 1TWD ≈ ¥4.8\n\n🌏 おすすめスポット追記歓迎！';
+
+const EMOJIS = ['🌸','✈️','🍜','🛕','🎉','🌙','🏠','🔮','🌟','🎀','🦋','🐉'];
+
+// ====== Init ======
+function init() {
+  renderFloaties();
+  renderUserBar();
+  renderMembers();
+  renderAllTimelines();
+  renderChecklist();
+  document.getElementById('sharedMemo').value = sharedMemo;
+  document.getElementById('sharedMemo').addEventListener('input', e => { sharedMemo = e.target.value; });
+}
+
+function renderFloaties() {
+  const c = document.getElementById('floaties');
+  EMOJIS.forEach((em, i) => {
+    const d = document.createElement('div');
+    d.className = 'floaty';
+    d.textContent = em;
+    d.style.left = (Math.random() * 95) + '%';
+    d.style.animationDuration = (12 + Math.random() * 20) + 's';
+    d.style.animationDelay = (Math.random() * -30) + 's';
+    d.style.fontSize = (1.2 + Math.random() * 1.5) + 'rem';
+    c.appendChild(d);
+  });
+}
+
+function renderUserBar() {
+  const c = document.getElementById('userSelect');
+  c.innerHTML = '';
+  MEMBERS.forEach(m => {
+    const btn = document.createElement('button');
+    btn.className = 'user-chip' + (currentUser === m.id ? ' selected' : '');
+    btn.style.background = currentUser === m.id ? m.color : 'white';
+    btn.style.borderColor = currentUser === m.id ? m.color : '#ddd';
+    btn.innerHTML = `${m.emoji} ${m.name.split(' ')[1] || m.name}`;
+    btn.onclick = () => { currentUser = m.id; renderUserBar(); renderChecklist(); };
+    c.appendChild(btn);
+  });
+}
+
+function renderMembers() {
+  const c = document.getElementById('membersGrid');
+  c.innerHTML = '';
+  MEMBERS.forEach(m => {
+    const d = document.createElement('div');
+    d.className = 'member-chip' + (m.id === 'yuko' ? ' active' : '');
+    d.innerHTML = `
+      <div class="member-avatar" style="background:${m.color}22;">${m.emoji}</div>
+      <div class="member-info">
+        <div class="member-name">${m.name}</div>
+      </div>
+    `;
+    d.onclick = () => {
+      const nameInput = prompt(`${m.name} の名前を変更:`);
+      if (nameInput && nameInput.trim()) {
+        m.name = nameInput.trim();
+        renderMembers();
+        renderUserBar();
+      }
+    };
+    c.appendChild(d);
+  });
+}
+
+function renderAllTimelines() {
+  [1,2,3].forEach(day => renderTimeline(day));
+}
+
+function renderTimeline(day) {
+  const c = document.getElementById(`timeline-${day}`);
+  c.innerHTML = '';
+  (scheduleData[day] || []).forEach((item, idx) => {
+    const catColors = {
+      transport: '#4ECDC4', food: '#FF6B35', sightseeing: '#00C9A7',
+      night: '#A855F7', hotel: '#FF85A1', custom: '#FFD23F'
+    };
+    const div = document.createElement('div');
+    div.className = `schedule-item cat-${item.cat}`;
+
+    const reactHtml = Object.entries(item.reactions || {}).map(([em, cnt]) =>
+      `<span class="reaction-pill${cnt > 0 ? ' active' : ''}" onclick="toggleReaction(${day},${idx},'${em}')">${em}${cnt > 0 ? ' '+cnt : ''}</span>`
+    ).join('');
+
+    const commentsHtml = (item.comments || []).map(c => {
+      const m = MEMBERS.find(x => x.id === c.user) || {emoji:'👤', name: c.user, color:'#888'};
+      return `<div class="comment">
+        <div class="comment-avatar" style="background:${m.color}22;">${m.emoji}</div>
+        <div class="comment-body">
+          <div class="comment-author" style="color:${m.color}">${m.name.split(' ').pop()}</div>
+          ${escHtml(c.text)}
+        </div>
+      </div>`;
+    }).join('');
+
+    div.innerHTML = `
+      <div class="time-col">
+        <div class="time-dot" style="border-color:${catColors[item.cat]||'#ccc'}"></div>
+        <div class="time-label">${item.time}${item.timeEnd ? '<span class="time-end">〜'+item.timeEnd+'</span>' : ''}</div>
+      </div>
+      <div class="card-col">
+      <div class="schedule-card" id="card-${day}-${idx}">
+        <div class="schedule-top" onclick="toggleCard(this)" style="cursor:pointer;">
+          <div class="schedule-title">${item.icon} ${escHtml(item.title)}</div>
+          <div style="display:flex;align-items:center;gap:0.3rem;flex-shrink:0;">
+            <span class="cat-badge">${escHtml(item.catLabel)}</span>
+            <button class="card-action-btn edit-btn" onclick="event.stopPropagation();editSchedule(${day},${idx})" title="編集">✏️</button>
+            <button class="card-action-btn del-btn" onclick="event.stopPropagation();deleteSchedule(${day},${idx})" title="削除">🗑</button>
+          </div>
+        </div>
+        <div class="card-edit-form" id="editForm-${day}-${idx}" style="display:none;"></div>
+        ${item.notes ? `<div class="schedule-notes">${escHtml(item.notes).replace(/\n/g,'<br>')}</div>` : ''}
+        <div class="reaction-row">${reactHtml}<span class="reaction-pill add-reaction" onclick="addReaction(event,${day},${idx})">＋</span></div>
+        <div class="comments-section">
+          ${commentsHtml}
+          <div class="comment-input-row">
+            <input class="comment-input" placeholder="コメントを書く..." id="ci-${day}-${idx}" onkeydown="if(event.key==='Enter'){event.stopPropagation();sendComment(${day},${idx})}" onclick="event.stopPropagation()">
+            <button class="send-btn" onclick="event.stopPropagation();sendComment(${day},${idx})">↑</button>
+          </div>
+        </div>
+      </div>
+      </div>
+    `;
+    c.appendChild(div);
+  });
+}
+
+function closeEditForm(day, idx) {
+  const el = document.getElementById('editForm-' + day + '-' + idx);
+  if (el) el.style.display = 'none';
+}
+
+function editSchedule(day, idx) {
+  const item = scheduleData[day][idx];
+  const formEl = document.getElementById('editForm-' + day + '-' + idx);
+  if (!formEl) return;
+  if (formEl.style.display !== 'none') {
+    formEl.style.display = 'none';
+    return;
+  }
+
+  // Build form using DOM — no innerHTML with nested quotes
+  formEl.innerHTML = '';
+  const wrap = document.createElement('div');
+  wrap.style.cssText = 'display:flex;flex-direction:column;gap:0.5rem;padding:0.8rem 0 0.3rem;';
+
+  const titleInput = document.createElement('input');
+  titleInput.className = 'comment-input';
+  titleInput.value = item.title;
+  titleInput.placeholder = 'タイトル';
+  titleInput.style.cssText = 'font-size:0.85rem;padding:7px 12px;';
+  titleInput.id = 'eTitle-' + day + '-' + idx;
+  titleInput.addEventListener('click', e => e.stopPropagation());
+  wrap.appendChild(titleInput);
+
+  const timeRow = document.createElement('div');
+  timeRow.style.cssText = 'display:flex;gap:0.4rem;';
+
+  const timeInput = document.createElement('input');
+  timeInput.className = 'comment-input';
+  timeInput.value = item.time;
+  timeInput.placeholder = '開始時間';
+  timeInput.style.cssText = 'font-size:0.82rem;padding:7px 10px;flex:1;';
+  timeInput.id = 'eTime-' + day + '-' + idx;
+  timeInput.addEventListener('click', e => e.stopPropagation());
+
+  const timeEndInput = document.createElement('input');
+  timeEndInput.className = 'comment-input';
+  timeEndInput.value = item.timeEnd || '';
+  timeEndInput.placeholder = '終了時間';
+  timeEndInput.style.cssText = 'font-size:0.82rem;padding:7px 10px;flex:1;';
+  timeEndInput.id = 'eTimeEnd-' + day + '-' + idx;
+  timeEndInput.addEventListener('click', e => e.stopPropagation());
+
+  timeRow.appendChild(timeInput);
+  timeRow.appendChild(timeEndInput);
+  wrap.appendChild(timeRow);
+
+  const notesInput = document.createElement('textarea');
+  notesInput.className = 'comment-input';
+  notesInput.value = item.notes || '';
+  notesInput.placeholder = 'メモ（任意）';
+  notesInput.rows = 3;
+  notesInput.style.cssText = 'font-size:0.82rem;padding:7px 12px;resize:vertical;';
+  notesInput.id = 'eNotes-' + day + '-' + idx;
+  notesInput.addEventListener('click', e => e.stopPropagation());
+  wrap.appendChild(notesInput);
+
+  const btnRow = document.createElement('div');
+  btnRow.style.cssText = 'display:flex;gap:0.4rem;';
+
+  const saveBtn = document.createElement('button');
+  saveBtn.className = 'send-btn';
+  saveBtn.textContent = '保存';
+  saveBtn.style.cssText = 'width:auto;padding:0 16px;font-size:0.8rem;font-weight:700;background:var(--teal);';
+  saveBtn.addEventListener('click', function(e) { e.stopPropagation(); saveScheduleEdit(day, idx); });
+
+  const cancelBtn = document.createElement('button');
+  cancelBtn.textContent = 'キャンセル';
+  cancelBtn.style.cssText = 'background:#eee;border:none;border-radius:12px;padding:0 14px;cursor:pointer;font-size:0.8rem;color:#888;';
+  cancelBtn.addEventListener('click', function(e) { e.stopPropagation(); closeEditForm(day, idx); });
+
+  btnRow.appendChild(saveBtn);
+  btnRow.appendChild(cancelBtn);
+  wrap.appendChild(btnRow);
+
+  formEl.appendChild(wrap);
+  formEl.style.display = 'block';
+  titleInput.focus();
+}
+
+function saveScheduleEdit(day, idx) {
+  const item = scheduleData[day][idx];
+  const t = document.getElementById('eTitle-' + day + '-' + idx);
+  const s = document.getElementById('eTime-' + day + '-' + idx);
+  const e = document.getElementById('eTimeEnd-' + day + '-' + idx);
+  const n = document.getElementById('eNotes-' + day + '-' + idx);
+  if (t && t.value.trim()) item.title = t.value.trim();
+  if (s && s.value.trim()) item.time = s.value.trim();
+  if (e) item.timeEnd = e.value.trim();
+  if (n) item.notes = n.value.trim();
+  sortSchedule(day);
+  renderTimeline(day);
+}
+
+function deleteSchedule(day, idx) {
+  const item = scheduleData[day][idx];
+  const card = document.getElementById('card-' + day + '-' + idx);
+  if (!card) return;
+
+  const confirmId = 'delConfirm-' + day + '-' + idx;
+  if (document.getElementById(confirmId)) return;
+
+  const bar = document.createElement('div');
+  bar.id = confirmId;
+  bar.style.cssText = 'display:flex;align-items:center;gap:0.5rem;margin-top:0.6rem;padding:0.6rem 0.8rem;background:#fff0f3;border-radius:12px;border:1.5px solid #ffb3c1;';
+
+  const label = document.createElement('span');
+  label.textContent = '「' + item.title + '」を削除しますか？';
+  label.style.cssText = 'font-size:0.8rem;font-weight:700;color:var(--red);flex:1;';
+
+  const delBtn = document.createElement('button');
+  delBtn.textContent = '削除';
+  delBtn.style.cssText = 'background:var(--red);color:white;border:none;border-radius:10px;padding:5px 14px;cursor:pointer;font-size:0.78rem;font-weight:700;';
+  delBtn.addEventListener('click', function(e) { e.stopPropagation(); confirmDelete(day, idx); });
+
+  const cancelBtn = document.createElement('button');
+  cancelBtn.textContent = 'キャンセル';
+  cancelBtn.style.cssText = 'background:#eee;border:none;border-radius:10px;padding:5px 12px;cursor:pointer;font-size:0.78rem;color:#888;';
+  cancelBtn.addEventListener('click', function(e) { e.stopPropagation(); bar.remove(); });
+
+  bar.appendChild(label);
+  bar.appendChild(delBtn);
+  bar.appendChild(cancelBtn);
+  bar.addEventListener('click', e => e.stopPropagation());
+  card.appendChild(bar);
+}
+
+function confirmDelete(day, idx) {
+  scheduleData[day].splice(idx, 1);
+  renderTimeline(day);
+}
+
+function toggleCard(el) {
+  const card = el.closest('.schedule-card');
+  card.classList.toggle('collapsed');
+}
+
+function toggleReaction(day, idx, emoji) {
+  const item = scheduleData[day][idx];
+  if (!item.reactions) item.reactions = {};
+  item.reactions[emoji] = (item.reactions[emoji] || 0) > 0 ? 0 : 1;
+  renderTimeline(day);
+}
+
+function addReaction(e, day, idx) {
+  e.stopPropagation();
+  const emojis = ['😍','🔥','🤤','💕','😂','👏','🤩','😢','🎊','🍜','🛕','🌙'];
+  const em = emojis[Math.floor(Math.random() * emojis.length)];
+  const item = scheduleData[day][idx];
+  if (!item.reactions[em]) item.reactions[em] = 0;
+  item.reactions[em]++;
+  renderTimeline(day);
+}
+
+function sendComment(day, idx) {
+  const input = document.getElementById(`ci-${day}-${idx}`);
+  const text = input.value.trim();
+  if (!text) return;
+  scheduleData[day][idx].comments.push({ user: currentUser, text });
+  renderTimeline(day);
+}
+
+function addSchedule(day) {
+  const btnId = `addSchedBtn-${day}`;
+  const formId = `addSchedForm-${day}`;
+  if (document.getElementById(formId)) return;
+
+  const btn = document.getElementById(btnId);
+  const form = document.createElement('div');
+  form.id = formId;
+  form.style.cssText = 'background:white;border-radius:18px;padding:1rem;border:2px solid #f0f0f0;margin-top:0.5rem;display:flex;flex-direction:column;gap:0.5rem;';
+  form.innerHTML = `
+    <div style="font-size:0.82rem;font-weight:700;color:#888;">＋ 新しい予定</div>
+    <input id="newSchedTitle-${day}" class="comment-input" placeholder="予定のタイトル（例：九份観光）" style="font-size:0.85rem;padding:8px 12px;">
+    <input id="newSchedTime-${day}" class="comment-input" placeholder="時間（例：10:00）" style="font-size:0.85rem;padding:8px 12px;width:160px;">
+    <div style="display:flex;gap:0.4rem;">
+      <button class="send-btn" onclick="confirmAddSchedule(${day})" style="width:auto;padding:0 16px;font-size:0.8rem;font-weight:700;">追加する</button>
+      <button onclick="cancelAddSchedule(${day})" style="background:#eee;border:none;border-radius:12px;padding:0 14px;cursor:pointer;font-size:0.8rem;color:#888;">キャンセル</button>
+    </div>
+  `;
+  btn.parentNode.insertBefore(form, btn);
+  document.getElementById(`newSchedTitle-${day}`).focus();
+}
+
+// 時間文字列を分単位の数値に変換（ソート用）
+function timeToMinutes(t) {
+  if (!t) return 9999;
+  const m = t.match(/(\d{1,2}):(\d{2})/);
+  if (!m) return 9999; // 「朝」「〜11:00」などは末尾
+  return parseInt(m[1]) * 60 + parseInt(m[2]);
+}
+
+function sortSchedule(day) {
+  scheduleData[day].sort((a, b) => timeToMinutes(a.time) - timeToMinutes(b.time));
+}
+
+function confirmAddSchedule(day) {
+  const title = document.getElementById(`newSchedTitle-${day}`).value.trim();
+  const time = document.getElementById(`newSchedTime-${day}`).value.trim() || '?:??';
+  if (title) {
+    scheduleData[day].push({
+      time, timeEnd: '', title, icon: '📌', cat: 'custom', catLabel: 'カスタム',
+      notes: '', reactions: {}, comments: []
+    });
+    sortSchedule(day);
+  }
+  cancelAddSchedule(day);
+  renderTimeline(day);
+}
+
+function cancelAddSchedule(day) {
+  const form = document.getElementById(`addSchedForm-${day}`);
+  if (form) form.remove();
+}
+
+function renderChecklist() {
+  const m = MEMBERS.find(x => x.id === currentUser);
+  const list = memberChecklists[currentUser];
+  const c = document.getElementById('checklistItems');
+  const titleEl = document.getElementById('checklistTitle');
+  if (titleEl) titleEl.textContent = m.name + 'の持ち物';
+
+  c.innerHTML = '';
+  list.forEach((item, i) => {
+    const div = document.createElement('div');
+    div.className = 'checklist-item' + (item.done ? ' done' : '');
+    div.style.cssText = 'display:flex;align-items:center;gap:0.6rem;padding:0.5rem 0;border-bottom:1.5px dashed #f0f0f0;';
+
+    // チェック円
+    const circle = document.createElement('div');
+    circle.className = 'check-circle';
+    circle.textContent = item.done ? '✓' : '';
+    circle.style.flexShrink = '0';
+    circle.onclick = () => { item.done = !item.done; renderChecklist(); };
+
+    // テキスト（インライン編集対応）
+    const textEl = document.createElement('div');
+    textEl.className = 'check-text';
+    textEl.textContent = item.text;
+    textEl.style.cssText = 'flex:1;min-width:0;';
+
+    // 編集ボタン
+    const editBtn = document.createElement('button');
+    editBtn.textContent = '✏️';
+    editBtn.style.cssText = 'background:none;border:none;cursor:pointer;font-size:0.85rem;opacity:0.4;padding:2px 4px;flex-shrink:0;';
+    editBtn.onclick = () => startEditCheckItem(i);
+
+    // 削除ボタン
+    const delBtn = document.createElement('button');
+    delBtn.textContent = '🗑';
+    delBtn.style.cssText = 'background:none;border:none;cursor:pointer;font-size:0.85rem;opacity:0.4;padding:2px 4px;flex-shrink:0;';
+    delBtn.onclick = () => { memberChecklists[currentUser].splice(i, 1); renderChecklist(); };
+
+    div.appendChild(circle);
+    div.appendChild(textEl);
+    div.appendChild(editBtn);
+    div.appendChild(delBtn);
+    c.appendChild(div);
+  });
+}
+
+function startEditCheckItem(i) {
+  const list = memberChecklists[currentUser];
+  const item = list[i];
+  const rows = document.getElementById('checklistItems').children;
+  if (!rows[i]) return;
+  const row = rows[i];
+
+  // テキスト部分をinputに差し替え
+  const textEl = row.querySelector('.check-text');
+  if (!textEl) return;
+
+  const input = document.createElement('input');
+  input.className = 'comment-input';
+  input.value = item.text;
+  input.style.cssText = 'flex:1;font-size:0.85rem;padding:5px 10px;min-width:0;';
+
+  const saveBtn = document.createElement('button');
+  saveBtn.textContent = '保存';
+  saveBtn.style.cssText = 'background:var(--teal);color:white;border:none;border-radius:10px;padding:4px 12px;cursor:pointer;font-size:0.75rem;font-weight:700;flex-shrink:0;';
+
+  const cancel = document.createElement('button');
+  cancel.textContent = '✕';
+  cancel.style.cssText = 'background:#eee;border:none;border-radius:10px;padding:4px 10px;cursor:pointer;font-size:0.75rem;color:#888;flex-shrink:0;';
+
+  const save = () => {
+    const v = input.value.trim();
+    if (v) item.text = v;
+    renderChecklist();
+  };
+
+  input.addEventListener('keydown', e => { if (e.key === 'Enter') save(); if (e.key === 'Escape') renderChecklist(); });
+  saveBtn.onclick = save;
+  cancel.onclick = () => renderChecklist();
+
+  textEl.replaceWith(input);
+  // 既存の編集・削除ボタンを一時的に隠す
+  const btns = row.querySelectorAll('button');
+  btns.forEach(b => b.style.display = 'none');
+  row.appendChild(saveBtn);
+  row.appendChild(cancel);
+  input.focus();
+  input.select();
+}
+
+function addCheckItem() {
+  const container = document.getElementById('checklistItems');
+  // avoid double input
+  if (document.getElementById('newCheckInput')) return;
+  const row = document.createElement('div');
+  row.style.cssText = 'display:flex;gap:0.4rem;margin-top:0.5rem;';
+  row.id = 'newCheckInput';
+  row.innerHTML = `
+    <input id="newCheckText" class="comment-input" placeholder="持ち物を入力..." style="flex:1;font-size:0.85rem;padding:8px 12px;" autofocus>
+    <button class="send-btn" onclick="confirmAddCheck()" style="width:auto;padding:0 14px;font-size:0.8rem;font-weight:700;">追加</button>
+    <button onclick="cancelAddCheck()" style="background:#eee;border:none;border-radius:12px;padding:0 12px;cursor:pointer;font-size:0.8rem;color:#888;">✕</button>
+  `;
+  container.appendChild(row);
+  document.getElementById('newCheckText').focus();
+  document.getElementById('newCheckText').addEventListener('keydown', e => {
+    if (e.key === 'Enter') confirmAddCheck();
+    if (e.key === 'Escape') cancelAddCheck();
+  });
+}
+
+function confirmAddCheck() {
+  const input = document.getElementById('newCheckText');
+  if (!input) return;
+  const text = input.value.trim();
+  if (text) {
+    memberChecklists[currentUser].push({ id: Date.now(), text, done: false });
+  }
+  renderChecklist();
+}
+
+function cancelAddCheck() {
+  const row = document.getElementById('newCheckInput');
+  if (row) row.remove();
+}
+
+function switchDay(day, btn) {
+  document.querySelectorAll('.day-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.day-panel').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('day-' + day).classList.add('active');
+}
+
+function escHtml(str) {
+  return (str || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+</script>
+</body>
+</html>
