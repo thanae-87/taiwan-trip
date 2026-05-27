@@ -1256,6 +1256,21 @@ async function loadFromStorage() {
     const data = json.record;
     if (data.schedules && Object.keys(data.schedules).length > 0) {
       scheduleData = data.schedules;
+    } else {
+      // 初回：デフォルトスケジュールをクラウドに保存
+      await fetch(JSONBIN_URL, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Master-Key': JSONBIN_KEY,
+          'X-Bin-Versioning': 'false'
+        },
+        body: JSON.stringify({
+          schedules: scheduleData,
+          memo: sharedMemo,
+          checklists: memberChecklists
+        })
+      });
     }
     if (data.memo) sharedMemo = data.memo;
     if (data.checklists) {
