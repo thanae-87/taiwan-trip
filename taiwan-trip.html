@@ -1211,6 +1211,38 @@ MEMBERS.forEach(m => {
   memberChecklists[m.id] = JSON.parse(JSON.stringify(BASE_CHECKLIST));
 });
 
+// ====== localStorage ======
+const STORAGE_KEY = 'tw2026_';
+
+function saveToStorage() {
+  try {
+    // 持ち物（メンバーごと）
+    MEMBERS.forEach(m => {
+      localStorage.setItem(STORAGE_KEY + 'checklist_' + m.id, JSON.stringify(memberChecklists[m.id]));
+    });
+    // スケジュール（追加・編集・削除）
+    localStorage.setItem(STORAGE_KEY + 'schedules', JSON.stringify(scheduleData));
+    // メモ
+    localStorage.setItem(STORAGE_KEY + 'memo', sharedMemo);
+  } catch(e) {}
+}
+
+function loadFromStorage() {
+  try {
+    // 持ち物
+    MEMBERS.forEach(m => {
+      const saved = localStorage.getItem(STORAGE_KEY + 'checklist_' + m.id);
+      if (saved) memberChecklists[m.id] = JSON.parse(saved);
+    });
+    // スケジュール
+    const savedSched = localStorage.getItem(STORAGE_KEY + 'schedules');
+    if (savedSched) scheduleData = JSON.parse(savedSched);
+    // メモ
+    const savedMemo = localStorage.getItem(STORAGE_KEY + 'memo');
+    if (savedMemo) sharedMemo = savedMemo;
+  } catch(e) {}
+}
+
 // ====== State ======
 let currentUser = 'yuko';
 let scheduleData = JSON.parse(JSON.stringify(SCHEDULES));
@@ -1220,13 +1252,17 @@ const EMOJIS = ['🌸','✈️','🍜','🛕','🎉','🌙','🏠','🔮','🌟'
 
 // ====== Init ======
 function init() {
+  loadFromStorage();
   renderFloaties();
   renderUserBar();
   renderMembers();
   renderAllTimelines();
   renderChecklist();
   document.getElementById('sharedMemo').value = sharedMemo;
-  document.getElementById('sharedMemo').addEventListener('input', e => { sharedMemo = e.target.value; });
+  document.getElementById('sharedMemo').addEventListener('input', e => {
+    sharedMemo = e.target.value;
+    saveToStorage();
+  });
 }
 
 function renderFloaties() {
@@ -1431,6 +1467,7 @@ function saveScheduleEdit(day, idx) {
   if (e) item.timeEnd = e.value.trim();
   if (n) item.notes = n.value.trim();
   sortSchedule(day);
+  saveToStorage();
   renderTimeline(day);
 }
 
@@ -1469,6 +1506,7 @@ function deleteSchedule(day, idx) {
 
 function confirmDelete(day, idx) {
   scheduleData[day].splice(idx, 1);
+  saveToStorage();
   renderTimeline(day);
 }
 
@@ -1481,6 +1519,7 @@ function toggleReaction(day, idx, emoji) {
   const item = scheduleData[day][idx];
   if (!item.reactions) item.reactions = {};
   item.reactions[emoji] = (item.reactions[emoji] || 0) > 0 ? 0 : 1;
+  saveToStorage();
   renderTimeline(day);
 }
 
@@ -1491,6 +1530,7 @@ function addReaction(e, day, idx) {
   const item = scheduleData[day][idx];
   if (!item.reactions[em]) item.reactions[em] = 0;
   item.reactions[em]++;
+  saveToStorage();
   renderTimeline(day);
 }
 
@@ -1499,6 +1539,7 @@ function sendComment(day, idx) {
   const text = input.value.trim();
   if (!text) return;
   scheduleData[day][idx].comments.push({ user: currentUser, text });
+  saveToStorage();
   renderTimeline(day);
 }
 
@@ -1545,6 +1586,7 @@ function confirmAddSchedule(day) {
       notes: '', reactions: {}, comments: []
     });
     sortSchedule(day);
+    saveToStorage();
   }
   cancelAddSchedule(day);
   renderTimeline(day);
@@ -1573,7 +1615,7 @@ function renderChecklist() {
     circle.className = 'check-circle';
     circle.textContent = item.done ? '✓' : '';
     circle.style.flexShrink = '0';
-    circle.onclick = () => { item.done = !item.done; renderChecklist(); };
+    circle.onclick = () => { item.done = !item.done; saveToStorage(); renderChecklist(); };
 
     // テキスト（インライン編集対応）
     const textEl = document.createElement('div');
@@ -1591,7 +1633,7 @@ function renderChecklist() {
     const delBtn = document.createElement('button');
     delBtn.textContent = '🗑';
     delBtn.style.cssText = 'background:none;border:none;cursor:pointer;font-size:0.85rem;opacity:0.4;padding:2px 4px;flex-shrink:0;';
-    delBtn.onclick = () => { memberChecklists[currentUser].splice(i, 1); renderChecklist(); };
+    delBtn.onclick = () => { memberChecklists[currentUser].splice(i, 1); saveToStorage(); renderChecklist(); };
 
     div.appendChild(circle);
     div.appendChild(textEl);
@@ -1628,6 +1670,7 @@ function startEditCheckItem(i) {
   const save = () => {
     const v = input.value.trim();
     if (v) item.text = v;
+    saveToStorage();
     renderChecklist();
   };
 
@@ -1671,6 +1714,7 @@ function confirmAddCheck() {
   const text = input.value.trim();
   if (text) {
     memberChecklists[currentUser].push({ id: Date.now(), text, done: false });
+    saveToStorage();
   }
   renderChecklist();
 }
